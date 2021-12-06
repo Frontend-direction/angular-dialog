@@ -1,0 +1,35 @@
+<header class="dialog-header">
+  <div>Angular dynamic component</div>
+  <div class="close_btn" (click)="closeApp()">X</div>
+</header>
+<div class="dialog-body">
+  <section class="text-wrapper">
+    <p>{{ config.data.message }}</p>
+    <p>{{ config.data.description }}</p>
+  </section>
+  {{ status }}
+  <section class="sidebar">
+    <div class="action-buttons">
+      <ng-container *ngTemplateOutlet="actionBtnsTemp"></ng-container>
+    </div>
+  </section>
+</div>
+
+<ng-template #defaultTemp>
+  <button class="action-button" (click)="launchApp()">Launch app</button>
+  <button class="action-button" (click)="pinApp()">Pin app</button>
+  <button class="action-button" (click)="editApp()">Edit app</button>
+</ng-template>
+
+<ng-template #requestAccessTemp>
+  <div class="request-access">
+    <div class="request-access-text">
+      You have to request access to this application
+    </div>
+    <button 
+    *ngIf="status === 'DEFAULT'"
+    class="action-button"
+    (click)="requestAccess()"
+    >Request access</button>
+  </div>
+</ng-template>
